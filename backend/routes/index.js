@@ -1,30 +1,24 @@
-const express = require('express');
-const router = express.Router();
-const authRoutes = require('./auth');
+const { Router } = require('express')
+const authRoutes = require('./auth')
+const recetaRoutes = require('./recetas')
+const ingredienteRoutes = require('./ingredientes')
+const favoritoRoutes = require('./favoritos')
+const menuRoutes = require('./menu')
 
-// Ruta de prueba
+const router = Router()
+
+
 router.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'OK',
-    message: 'API funcionando correctamente',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
-  });
-});
+  res.status(200).json({ status: 'OK' })
+})
 
-// Rutas de autenticación
-router.use('/auth', authRoutes);
+// rutas de autenticacion
+router.use('/auth', authRoutes)
 
-// Ruta de ejemplo
-router.get('/test', (req, res) => {
-  res.json({
-    message: 'Endpoint de prueba',
-    data: {
-      backend: 'Express',
-      database: 'PostgreSQL',
-      orm: 'Sequelize'
-    }
-  });
-});
+// rutas de la app
+router.use('/recetas', recetaRoutes)
+router.use('/recetas/:id/ingredientes', ingredienteRoutes)
+router.use('/favoritos', favoritoRoutes)
+router.use('/menu', menuRoutes)
 
-module.exports = router;
+module.exports = router
