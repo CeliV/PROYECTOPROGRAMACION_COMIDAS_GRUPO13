@@ -18,6 +18,7 @@ router.use('/auth', authRoutes)
 // rutas de la app
 router.use('/recetas', recetaRoutes)
 router.use('/recetas/:id/ingredientes', ingredienteRoutes)
+router.use('/ingredientes', ingredienteRoutes)
 router.use('/favoritos', favoritoRoutes)
 router.use('/menu', menuRoutes)
 
